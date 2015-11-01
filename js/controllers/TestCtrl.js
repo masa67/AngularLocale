@@ -4,7 +4,7 @@
     /*global angular, moment */
     angular
         .module('TestCtrl', ['LocaleService'])
-        .controller('TestCtrl', [ '$scope', 'locale', function ($scope, locale) {
+        .controller('TestCtrl', [ '$scope', 'locale', 'amFormatter', function ($scope, locale, amFormatter) {
             var localeData;
 
             locale.setLocaleID('fi');
@@ -43,7 +43,7 @@
             };
 
             // Important:
-
-            $scope.datepickerPopup = localeData.longDateFormat('L');
+            // Need to translate a Moment format to Angular date filter format:
+            $scope.datepickerPopup = amFormatter.mToA(localeData.longDateFormat('L'));
         }]);
 }());
