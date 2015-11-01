@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+</head>
+<body ng-app="LocApp">
+    <div ng-controller="TestCtrl">
+        <div class="container">
+            <h2>Common</h2>
+            <p>LocaleID = {{localeID}}</p>
+            <p>Date: {{today}}</p>
+            <h2>Interaction with Angular Date</h2>
+            <form>
+                <div class="form-group">
+                    <div class="col-xs-3">
+                        <label class="pull-right" for="meetinTime">Meeting Time</label>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="input-group">
+                            <p class="input-group">
+                                <input type="date"
+                                       class="form-control"
+                                       uib-datepicker-popup="{{datepickerPopup}}"
+                                       ng-model="dt"
+                                       is-open="status.opened"
+                                       min-date="minDate"
+                                       max-date="maxDate"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)"
+                                       ng-required="true"
+                                       close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="/AngularLocale/js/factories/locale.js"></script>
+    <script src="/AngularLocale/js/controllers/TestCtrl.js"></script>
+    <script src="/AngularLocale/js/app.js"></script>
+</body>
+</html>
