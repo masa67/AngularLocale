@@ -4,14 +4,26 @@
     /*global angular, moment */
     angular
         .module('TestCtrl', ['LocaleService'])
-        .controller('TestCtrl', [ '$scope', 'locale', 'amFormatter', function ($scope, locale, amFormatter) {
+        .controller('TestCtrl', [ '$scope', 'locale', function ($scope, locale) {
             var localeData;
 
-            locale.setLocaleID('fi');
+            locale.setLocaleID('en');
             localeData = moment.localeData();
 
-            $scope.localeID = locale.getLocaleID();
-            $scope.today = moment().format('L');
+            $scope.newLocaleID = '';
+
+            $scope.updateLocale = function (localeID) {
+                $scope.localeID = localeID || $scope.newLocaleID;
+                locale.setLocaleID($scope.localeID);
+
+                localeData = moment.localeData();
+
+                $scope.today = moment().format('L');
+
+                $scope.datepickerPopup = locale.translateMomentFormatToAngular(localeData.longDateFormat('L'));
+            };
+
+            $scope.updateLocale(locale.getLocaleID());
 
             // Code for datepicker:
 
@@ -41,9 +53,5 @@
             $scope.status = {
                 opened: false
             };
-
-            // Important:
-            // Need to translate a Moment format to Angular date filter format:
-            $scope.datepickerPopup = amFormatter.mToA(localeData.longDateFormat('L'));
         }]);
 }());
